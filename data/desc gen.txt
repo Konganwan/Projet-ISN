@@ -1,0 +1,23 @@
+Projet : Site de partage / hébergement d'images
+
+ - Affichage / Interface utilisateur
+    - HTML / CSS
+    - 3 pages
+        - Accueil
+        - Résultats de recherche
+        - Visualisation d'une image
+        - Voir shema_pages.png
+    - Recherche:
+        - Par mots-clés
+ - Logique:
+    - Index des images : Bdd sqlite3 -> Colonnes:
+        - index : INT PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL -> N° de l'image
+        - user : TEXT NOT NULL -> Nom de l'utilisateur ayant posté l'image
+        - tags : TEXT -> Tags de limage stockés comme "[Tag1],[Tag2],..."
+        - filename : TEXT NOT NULL -> Chemin d'acces de l'image
+        - title TEXT NOT NULL-> titre de l'image
+    - liste des utilisateurs : Bdd sqlite3 -> Colonnes:
+        - index : INT PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL -> N° de l'utilisateur
+        - name : TEXT NOT NULL -> nom d'utilisateur
+        - pwdhash : (INTEGER/TEXT) NOT NULL -> hash du mot de passe
+        - mail : TEXT NOT NULL -> mail de l'utilisateur
