@@ -1,0 +1,2 @@
+addImage(readFile: file) -> str imgRef
+	enregistre l'image et ajoute une entrée à la base de donnée
