@@ -1,2 +1,13 @@
 addImage(readFile: file) -> str imgRef
 	enregistre l'image et ajoute une entrée à la base de donnée
+
+addUser(name: str, passHash: ???, mail: str) -> int exitcode
+    enregistre un utilisateur
+    ExitCodes:
+    0 -> Tout est bon, utilisateur ajouté
+    1 -> Connection à la bdd impossible ou interrompue
+    3 -> Mail invalide
+    4 -> Mail déjà utilisée
+    5 -> Nom d'utilisateur hors format: "([A-Za-z0-9]|-|_)+"
+    6 -> Unknown Error
+
