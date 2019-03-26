@@ -1,31 +1,65 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 	<title>Page 1</title>
-	<style>
+    
+<style>
 /* Partition de la page */
-body {
-  margin: 0;
-  background-color:#272822;
-  color: #F8F8F2
-}
+ body {
+ 	 margin: 0;
+  	 background-color: #272822;
+	 color: #F8F8F2;
+     padding: 10px;
+     }
 
-/* Style du entête */
-header {
-  background-color:#494a44;
-  padding: 20px;
-  text-align: center;
-  color: #66D9EF;
-}
-/* selected link */
+/* Style du entÃªte */
+ header {
+     padding: 10px;
+     background-color: #494a44;
+     text-align: center;
+     color: #66D9EF;
+     }
+   
+ nav {
+     overflow: hidden;
+     background-color: #E69F66;
+     max-with:10000px;
+     margin:auto;
+     display: flex;
+     justify-content:space-evenly;
+     }
 
-	</style>
-<!-- Fond d'écran -->
+/* Style the topnav links */
+ nav a {
+ 	
+       
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+/* Change color on hover */
+ nav a:hover {
+ 	background-color: white;
+    color: #E69F66;
+    }
+p {display:block;}
+</style>
 </head>
+
 <body>
 	<header>
 		<h1>Header</h1>
 	</header>
-	<p>Hello</p>
+    
+    <nav>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+	</nav>
+<p>Hello</p>
 </body>
 </html>
