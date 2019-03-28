@@ -7,7 +7,7 @@ DB_PATH = os.path.dirname(__file__).join("db.db")
 
 def constantSetup(sDataBasePath):
     global DB_PATH
-    here.DB_PATH = sDataBasePath
+    DB_PATH = sDataBasePath
     pass
 
 def initTable():
@@ -18,7 +18,7 @@ def initTable():
                                           mail TEXT)""")
         db.commit()
         db.close()
-    
+
 
 def addUser(sName, sPwd, sMail):
     with sql.connect(DB_PATH) as db:
@@ -32,7 +32,7 @@ def removeUser(nUserID):
         db.execute("REMOVE FROM users WHERE id=?",(nUserID,))
         db.commit()
         db.close()
-    
+
 def checkUserPassword(sGivenPwd, sMail):
     sGPwdHash = hasher.sha256(sGivenPwd).hexdigest()
     sStoredHash = ""
@@ -55,11 +55,9 @@ def chekUserExists(sMail):
             return True
         else:
             return False
-    
+
 def getUserInfo(sMail):
     with sql.connect(DB_PATH).cursor() as cur:
         cur.execute("SELECT * FROM users WHERE  mail=?",(sMail,))
         for info in cur:
             return info
-
-
