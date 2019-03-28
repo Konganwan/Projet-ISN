@@ -2,7 +2,6 @@ import sqlite3 as sql
 import hashlib as hasher
 import os
 
-
 DB_PATH = os.path.dirname(__file__).join("db.db")
 
 def constantSetup(sDataBasePath):
