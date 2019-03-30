@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+    background-color: #272822;
+  color: #F8F8F2;
+    padding: 10px;
+    }
+
+/* Style du entête */
+header {
+    padding: 10px;
+    background-color: #494a44;
+    text-align: center;
+    color: #66D9EF;
+    }
+
+nav {
+    overflow: hidden;
+    background-color: #E69F66;
+    max-with:10000px;
+    margin:auto;
+    display: flex;
+    justify-content:space-evenly;
+    }
+
+/* Style the topnav links */
+nav a {
+
+
+   color: #f2f2f2;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+   }
+
+/* Change color on hover */
+nav a:hover {
+ background-color: white;
+   color: #E69F66;
+   }
+p {display:block;}
