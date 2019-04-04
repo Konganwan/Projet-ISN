@@ -18,25 +18,31 @@ header {
 nav {
     overflow: hidden;
     background-color: #E69F66;
-    max-with:10000px;
+    max-width:10000px;
     margin:auto;
     display: flex;
     justify-content:space-evenly;
-    }
+}
 
 /* Style the topnav links */
 nav a {
-
-
-   color: #f2f2f2;
-   text-align: center;
-   padding: 14px 16px;
-   text-decoration: none;
-   }
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
 
 /* Change color on hover */
 nav a:hover {
- background-color: white;
-   color: #E69F66;
-   }
-p {display:block;}
+    background-color: white;
+    color: #E69F66;
+}
+
+p {
+    display:block;
+}
+
+ /* Create three equal columns that floats next to each other */
+column {
+    width: 100%;
+}
