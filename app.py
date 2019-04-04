@@ -31,13 +31,17 @@ class Webapp(object):
 
     @cp.expose
     def signup(self):
-      return open("signup.html")
+        return open("signup.html")
 
     @cp.expose
     def login_status(self,mail,pwd):
-      return open("login_status.html")
+        return open("login_status.html")
 
 
     @cp.expose
     def signup_status(self,name,mail,pwd):
-      return open("signup_status.html")
+        return open("signup_status.html")
+
+    @cp.expose
+    def search_results(self,query):
+        return open("search_results.html")
