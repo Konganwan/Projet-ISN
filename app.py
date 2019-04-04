@@ -8,6 +8,14 @@ import image_database as images
 
 class Webapp(object):
     """docstring for Webapp."""
+    def __init__(self):
+        fi = open("config.json")
+        config = json.load(fi)
+        users.constantSetup(config["DbPath"])
+        users.tableSetup()
+        images.constantSetup(config["DbPath"])
+        images.tableSetup()
+
     @cp.expose()
     def index(self):
         return open("page1.html")
@@ -28,4 +36,8 @@ class Webapp(object):
     @cp.expose
     def login_status(self,mail,pwd):
       return open("login_status.html")
-     
+
+
+    @cp.expose
+    def signup_status(self,name,mail,pwd):
+      return open("signup_status.html")
