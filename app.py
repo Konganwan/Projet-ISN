@@ -9,11 +9,11 @@ import image_database as images
 class Webapp(object):
     """docstring for Webapp."""
     def __init__(self):
-        fi = open("config.json")
-        config = json.load(fi)
-        users.constantSetup(config["DbPath"])
+#        fi = open("config.json")
+#        config = json.load(fi)
+        users.constantSetup("db.db")
         users.tableSetup()
-        images.constantSetup(config["DbPath"])
+        images.constantSetup("db.db")
         images.tableSetup()
 
     @cp.expose()
