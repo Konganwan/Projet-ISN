@@ -12,12 +12,15 @@ def constantSetup(sDataBasePath):
 
 def tableSetup():
     """Setups the constants in the database"""
-    with sql.connect(DB_PATH) as db:
-        db.execute("""CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-                                          name TEXT,
-                                          pwd_hash TEXT,
-                                          mail TEXT)""")
-        db.commit()
+    try:
+        with sql.connect(DB_PATH) as db:
+            db.execute("""CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
+                                              name TEXT,
+                                              pwd_hash TEXT,
+                                              mail TEXT)""")
+            db.commit()
+    except:
+        pass
 
 
 def addUser(sName, sPwd, sMail):

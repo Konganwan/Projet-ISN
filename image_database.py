@@ -9,15 +9,18 @@ def constantSetup(sDataBasePath):
     DB_PATH = sDataBasePath
 
 def tableSetup():
-    with sql.connect(DB_PATH) as db:
-        db.execute("""CREATE TABLE images (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
-                                          title TEXT,
-                                          description TEXT,
-                                          tags TEXT,
-                                          publisher INTEGER,
-                                          file_path TEXT,
-                                          publish_time INT)""")
-        db.commit()
+    try:
+        with sql.connect(DB_PATH) as db:
+            db.execute("""CREATE TABLE images (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
+                                              title TEXT,
+                                              description TEXT,
+                                              tags TEXT,
+                                              publisher INTEGER,
+                                              file_path TEXT,
+                                              publish_time INT)""")
+            db.commit()
+    except:
+        pass
 
 def getImagePath(nId):
     with sql.connect(DB_PATH) as db:
