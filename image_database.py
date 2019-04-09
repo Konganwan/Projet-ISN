@@ -18,7 +18,6 @@ def tableSetup():
                                           file_path TEXT,
                                           publish_time INT)""")
         db.commit()
-        db.close()
 
 def getImagePath(nId):
     with sql.connect(DB_PATH) as db:
@@ -78,4 +77,3 @@ def addImage(sPath, sTitle, nOwner, sDescription, sTags):
             (sTitle, sDescription, sTags, nOwner, sPath, nTime))
         db.commit()
         db.close()
-

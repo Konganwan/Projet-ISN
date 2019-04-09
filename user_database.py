@@ -18,7 +18,6 @@ def tableSetup():
                                           pwd_hash TEXT,
                                           mail TEXT)""")
         db.commit()
-        db.close()
 
 
 def addUser(sName, sPwd, sMail):
