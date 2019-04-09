@@ -20,10 +20,10 @@ class Webapp(object):
     def index(self):
         return open("page1.html")
 
-    @cp.expose()
-    def show_image(self, iid):
-        page = open("show_image.html")
-            page.read()
+#    @cp.expose()
+#    def show_image(self, iid):
+#        page = open("show_image.html")
+#        page.read()
 
     @cp.expose
     def login(self):
