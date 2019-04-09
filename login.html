@@ -14,13 +14,13 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
-    <title>Login</title>
+    <title>${Nom_site} - Connexion</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <header>
-        <a href="page1.html"><img class='logo' src='public/logo.png'/></a>
-        <h1>Header</h1>
+        <a href="/"><img class='logo' src='/static/logo.png'/></a>
+        <h1>${Nom_site} - Connexion</h1>
     </header>
 
     <nav>
@@ -31,7 +31,7 @@
     </nav>
 
     <div class="login_box">
-        <form method="POST" action="loggin_status">
+        <form method="POST" action="/login_status">
             Email :<br />
             <input type="email" name="mail"/><br />
             Mot de Passe :<br />

@@ -21,10 +21,10 @@ class Webapp(object):
         return open("page1.html")
 
     @cp.expose()
-    def show_image(self, iid):
-        return open("show_image.html")
+    def show_image(self, iid=0):
+        return open("page3.html")
         htmlContent = str(page.readbytes(0xffffffffffff))
-        return
+        return htmlContent.format(images.getImagePath(int(iid)))
 
     @cp.expose
     def login(self):
@@ -35,11 +35,13 @@ class Webapp(object):
         return open("signup.html")
 
     @cp.expose
-    def login_status(self,mail,pwd, cpwd):
-        if users.chekUserExists(mail) and checkUserPassword(pwd, mail):
+    def login_status(self,mail,pwd):
+#        if users.chekUserExists(mail) and checkUserPassword(pwd, mail):
+#            pass
+        return "Under Construction"
 
     @cp.expose
-    def signup_status(self,name,mail,pwd):
+    def signup_status(self,name,mail,pwd,cpwd):
         return open("signup_status.html")
 
     @cp.expose
