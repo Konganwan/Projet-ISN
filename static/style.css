@@ -5,14 +5,16 @@ body {
     color: #F8F8F2;
     padding: 10px;
 }
-
+.bannerlink{
+  text-decoration: none;
+}
 header {
     padding: 10px;
     background-color: #494a44;
     text-align: center;
-    color: #66D9EF;
-    display: flex;
-    align-items:center;
+    color: #E69F66;
+    text-decoration: none;
+    text-align:center;
 }
 
 nav {
@@ -48,12 +50,12 @@ p {
 .p2col{
     width: 100%;
 
-}    
+}
 .p2col h2{
     text-align: center;
 }
 
-.p3leftcol {   
+.p3leftcol {
   float: left;
   width: 75%;
 }
@@ -62,4 +64,3 @@ p {
 .p3rightcol {
   float: right;
   width: 25%;
-  
