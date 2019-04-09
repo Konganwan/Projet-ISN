@@ -1,3 +1,4 @@
+/*Commun a toutes les pages */
 body {
     margin: 0;
     background-color: #272822;
@@ -5,7 +6,6 @@ body {
     padding: 10px;
 }
 
-/* Style du entête */
 header {
     padding: 10px;
     background-color: #494a44;
@@ -24,7 +24,6 @@ nav {
     justify-content:space-evenly;
 }
 
-/* Style the topnav links */
 nav a {
     color: #f2f2f2;
     text-align: center;
@@ -32,7 +31,6 @@ nav a {
     text-decoration: none;
 }
 
-/* Change color on hover */
 nav a:hover {
     background-color: white;
     color: #E69F66;
@@ -42,7 +40,26 @@ p {
     display:block;
 }
 
- /* Create three equal columns that floats next to each other */
-column {
+/*Page d'acceuil*/
+.p1col {
     width: 100%;
 }
+/*Page recherche*/
+.p2col{
+    width: 100%;
+
+}    
+.p2col h2{
+    text-align: center;
+}
+
+.p3leftcol {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.p3rightcol {
+  float: right;
+  width: 25%;
+  
