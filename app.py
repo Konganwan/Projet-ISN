@@ -20,10 +20,11 @@ class Webapp(object):
     def index(self):
         return open("page1.html")
 
-#    @cp.expose()
-#    def show_image(self, iid):
-#        page = open("show_image.html")
-#        page.read()
+    @cp.expose()
+    def show_image(self, iid):
+        return open("show_image.html")
+        htmlContent = str(page.readbytes(0xffffffffffff))
+        return
 
     @cp.expose
     def login(self):
@@ -34,9 +35,8 @@ class Webapp(object):
         return open("signup.html")
 
     @cp.expose
-    def login_status(self,mail,pwd):
-        return open("login_status.html")
-
+    def login_status(self,mail,pwd, cpwd):
+        if users.chekUserExists(mail) and checkUserPassword(pwd, mail):
 
     @cp.expose
     def signup_status(self,name,mail,pwd):
