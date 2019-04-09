@@ -6,10 +6,12 @@ import os
 DB_PATH = None
 
 def constantSetup(sDataBasePath):
+    """Setups the constants for the module"""
     global DB_PATH
     DB_PATH = sDataBasePath
 
 def tableSetup():
+    """Setups the constants in the database"""
     with sql.connect(DB_PATH) as db:
         db.execute("""CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
                                           name TEXT,
@@ -20,6 +22,7 @@ def tableSetup():
 
 
 def addUser(sName, sPwd, sMail):
+    """Adds a user in the database"""
     with sql.connect(DB_PATH) as db:
         sHashed=hasher.sha256(sPwd).hexdigest()
         db.execute("INSERT INTO users(name,pwd_hash,mail) VALUES (?,?,?)",(sName,sHashed,sMail))
