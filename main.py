@@ -1,3 +1,4 @@
+#!/usr/bin/python3.6
 import cherrypy as cp
 import os
 from app import Webapp
