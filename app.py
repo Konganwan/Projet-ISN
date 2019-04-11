@@ -21,14 +21,12 @@ class Webapp(object):
         if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
             return open("pages/home/not-connected.html")
         else:
+            print(cp.session["logged_as"])
             htmlContent = ""
-            with open("pages/home/connected") as page:
-                line = " "
-                while not line == "":
-                    line = page.readline()
+            with open("pages/home/connected.html") as page:
+                for line in page:
                     htmlContent = htmlContent + line
-            return
-            hgtmlContent.format(uName=getUserById(cp.session['logged_as'])[1])
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[1],img_rec="", img_mv="")
 
     @cp.expose(alias="view")
     def show_image(self, iid=0):
@@ -52,8 +50,13 @@ class Webapp(object):
             return htmlContent.format(img=images.getImagePath(int(iid)))
 
     @cp.expose
-    def login(self):
+    def login(self,fail=""):
       return open("pages/login/login.html")
+
+    @cp.expose
+    def disconect(self):
+        cp.session['logged_as'] = None
+        return self.index()
 
     @cp.expose
     def signup(self):
@@ -63,8 +66,9 @@ class Webapp(object):
     def login_status(self,mail,pwd):
         if users.chekUserExists(mail) and users.checkUserPassword(pwd, mail):
             cp.session['logged_as'] = users.getUserByMail(mail)[0]
-            return  open("pages/login_s/success.html")
-        else: return open("pages/login_s/failure.html")
+            return  self.index()
+        else:
+            return self.login(fail="Erreur - Adresse et/ou mot de passe incorrect")
 
     @cp.expose
     def signup_status(self,name,mail,pwd,cpwd):

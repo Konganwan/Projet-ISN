@@ -1,5 +1,6 @@
 import sqlite3 as sql
 import hashlib as hasher
+import codecs
 import os
 
 
@@ -26,48 +27,54 @@ def tableSetup():
 def addUser(sName, sPwd, sMail):
     """Adds a user in the database"""
     with sql.connect(DB_PATH) as db:
-        sHashed=hasher.sha256(sPwd).hexdigest()
+        sHashed=hasher.sha256(codecs.encode(sPwd)).hexdigest()
         db.execute("INSERT INTO users(name,pwd_hash,mail) VALUES (?,?,?)",(sName,sHashed,sMail))
         db.commit()
-        db.close()
 
 def removeUser(nUserID):
     with sql.connect(DB_PATH) as db:
         db.execute("REMOVE FROM users WHERE id=?",(nUserID,))
         db.commit()
-        db.close()
 
 def checkUserPassword(sGivenPwd, sMail):
-    sGPwdHash = hasher.sha256(sGivenPwd).hexdigest()
+    sGPwdHash = hasher.sha256(codecs.encode(sGivenPwd)).hexdigest()
     sStoredHash = ""
-    with sql.connect(DB_PATH).cursor() as cur:
+    with sql.connect(DB_PATH) as db:
+        cur = db.cursor()
         cur.execute("SELECT pwd_hash FROM users WHERE  mail=?",(sMail,))
         for info in cur:
             sStoredHash = info[0]
+        cur.close()
         if sStoredHash == sGPwdHash:
             return True
         else:
             return False
 
 def chekUserExists(sMail):
-    with sql.connect(DB_PATH).cursor() as cur:
+    with sql.connect(DB_PATH) as db:
+        cur = db.cursor()
         cur.execute("SELECT id FROM users WHERE  mail=?",(sMail,))
         nId = None
         for info in cur:
             nId = info[0]
+        cur.close()
         if nId is not None:
             return True
         else:
             return False
 
 def getUserByMail(sMail):
-    with sql.connect(DB_PATH).cursor() as cur:
+    with sql.connect(DB_PATH) as db:
+        cur = db.cursor()
         cur.execute("SELECT * FROM users WHERE  mail=?",(sMail,))
         for info in cur:
             return info
+        cur.close()
 
 def getUserById(nId):
-    with sql.connect(DB_PATH).cursor() as cur:
+    with sql.connect(DB_PATH) as db:
+        cur = db.cursor()
         cur.execute("SELECT * FROM users WHERE  id=?",(nId,))
         for info in cur:
             return info
+        cur.close()
