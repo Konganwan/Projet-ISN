@@ -21,17 +21,35 @@ class Webapp(object):
         if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
             return open("pages/home/not-connected.html")
         else:
-            htmlContent
+            htmlContent = ""
             with open("pages/home/connected") as page:
-                htmlContent = htmlContent + page.readline()
+                line = " "
+                while not line == "":
+                    line = page.readline()
+                    htmlContent = htmlContent + line
             return
             hgtmlContent.format(uName=getUserById(cp.session['logged_as'])[1])
 
     @cp.expose(alias="view")
     def show_image(self, iid=0):
+        if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
+            con = False
+            path = "pages/view/not-connected.html"
+        else:
+            con = True
+            path = "pages/view/connected.html"
         return open("pages/view/not-connected.html")
-        htmlContent = str(page.readbytes(0xffffffffffff))
-        return htmlContent.format(images.getImagePath(int(iid)))
+        ## WIP
+        htmlContent = ""
+        with open(path) as page:
+            line = " "
+            while not line == "":
+                line = page.readline()
+                htmlContent = htmlContent + line
+        if con:
+            return htmlContent.format(name=getUserById(cp.session['logged_as'])[1], img=images.getImagePath(int(iid)))
+        else:
+            return htmlContent.format(img=images.getImagePath(int(iid)))
 
     @cp.expose
     def login(self):
