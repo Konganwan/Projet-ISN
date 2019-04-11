@@ -16,19 +16,19 @@ class Webapp(object):
         images.constantSetup("db.db")
         images.tableSetup()
 
-    @cp.expose()
+    @cp.expose(alias="home")
     def index(self):
         if 'logged_as' not in cp.session or cp.session['logged_as'] = None:
-            return open("home/not-connected.html")
+            return open("/pages/home/not-connected.html")
         else:
             htmlContent
-            with open("home/connected") as page:
+            with open("/pages/home/connected") as page:
                 htmlContent = htmlContent + page.readline()
             return
             hgtmlContent.format(uName=getUserById(cp.session['logged_as'])[1])
-    @cp.expose()
+    @cp.expose(alias="view")
     def show_image(self, iid=0):
-        return open("page3.html")
+        return open("/pages/view/not-connected.html")
         htmlContent = str(page.readbytes(0xffffffffffff))
         return htmlContent.format(images.getImagePath(int(iid)))
 
@@ -42,9 +42,10 @@ class Webapp(object):
 
     @cp.expose
     def login_status(self,mail,pwd):
-#        if users.chekUserExists(mail) and checkUserPassword(pwd, mail):
-#
-        return "Under Construction"
+        if users.chekUserExists(mail) and checkUserPassword(pwd, mail):
+            cp.session['logged_as'] = getUserByMail(mail)[0]
+            return  open("/pages/login_s/success")
+        else: return open("/pages/login_s/failure")
 
     @cp.expose
     def signup_status(self,name,mail,pwd,cpwd):
