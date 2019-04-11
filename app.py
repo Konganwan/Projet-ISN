@@ -25,7 +25,7 @@ class Webapp(object):
             with open("home/connected") as page:
                 htmlContent = htmlContent + page.readline()
             return
-            hgtmlContent.
+            hgtmlContent.format(uName=getUserById(cp.session['logged_as'])[1])
     @cp.expose()
     def show_image(self, iid=0):
         return open("page3.html")
