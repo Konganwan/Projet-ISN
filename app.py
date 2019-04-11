@@ -51,12 +51,13 @@ class Webapp(object):
 
     @cp.expose
     def login(self,fail=""):
-      with open("pages/login/login.html") as page:
+        htmlContent = ""
+        with open("pages/login/login.html") as page:
           line = " "
           while not line == "":
               line = page.readline()
               htmlContent = htmlContent + line
-          return htmlContent.format(fail=fail)
+        return htmlContent.format(fail=fail,Nom_site="Site")
 
     @cp.expose
     def disconect(self):
