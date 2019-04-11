@@ -36,18 +36,16 @@ class Webapp(object):
         else:
             con = True
             path = "pages/view/connected.html"
-        return open("pages/view/not-connected.html")
-        ## WIP
         htmlContent = ""
         with open(path) as page:
-            line = " "
-            while not line == "":
-                line = page.readline()
+            for line in page:
                 htmlContent = htmlContent + line
+        try: ipath = getImagePath(int(iid))
+        except: ipath = ""
         if con:
-            return htmlContent.format(name=getUserById(cp.session['logged_as'])[1], img=images.getImagePath(int(iid)))
+            return htmlContent.format(name=getUserById(cp.session['logged_as'])[1], img=ipath)
         else:
-            return htmlContent.format(img=images.getImagePath(int(iid)))
+            return htmlContent.format(img=ipath)
 
     @cp.expose
     def login(self,fail=""):
