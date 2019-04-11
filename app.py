@@ -18,8 +18,14 @@ class Webapp(object):
 
     @cp.expose()
     def index(self):
-        return open("page1.html")
-
+        if 'logged_as' not in cp.session or cp.session['logged_as'] = None:
+            return open("home/not-connected.html")
+        else:
+            htmlContent
+            with open("home/connected") as page:
+                htmlContent = htmlContent + page.readline()
+            return
+            hgtmlContent.
     @cp.expose()
     def show_image(self, iid=0):
         return open("page3.html")
@@ -37,7 +43,7 @@ class Webapp(object):
     @cp.expose
     def login_status(self,mail,pwd):
 #        if users.chekUserExists(mail) and checkUserPassword(pwd, mail):
-#            pass
+#
         return "Under Construction"
 
     @cp.expose

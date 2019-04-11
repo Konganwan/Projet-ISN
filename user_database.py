@@ -60,8 +60,14 @@ def chekUserExists(sMail):
         else:
             return False
 
-def getUserInfo(sMail):
+def getUserByMail(sMail):
     with sql.connect(DB_PATH).cursor() as cur:
         cur.execute("SELECT * FROM users WHERE  mail=?",(sMail,))
+        for info in cur:
+            return info
+
+def getUserById(nId):
+    with sql.connect(DB_PATH).cursor() as cur:
+        cur.execute("SELECT * FROM users WHERE  id=?",(nId,))
         for info in cur:
             return info

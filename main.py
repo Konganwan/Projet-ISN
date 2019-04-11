@@ -4,7 +4,7 @@ import os
 from app import Webapp
 conf ={
     '/':{
-        #'tools.session.on':True,
+        'tools.sessions.on':True,
         'tools.staticdir.root': os.path.abspath(os.getcwd())
     },
     '/static':{
