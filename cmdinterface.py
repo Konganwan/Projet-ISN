@@ -36,7 +36,7 @@ class CLI(threading.Thread):
                         print(f'Error {e}')
                     else:
                         print(f'User n°{arg} removed')
-                else: print(f'Invalid subcommand: users.{sc}')
-            else: print(f'Invalid command: {inp}')
+                else: print(f'Invalid subcommand: users {inp[1]}')
+            else: print(f'Invalid command list: {inp[0]}')
         self.engine.exit()
         exit(0)
