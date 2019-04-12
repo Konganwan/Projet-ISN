@@ -14,8 +14,8 @@ conf ={
     }
 }
 cp.config.update({'log.screen': False,
-                        'log.access_file': '',
-                        'log.error_file': ''})
+                        'log.access_file': 'access.log',
+                        'log.error_file': 'error.log'})
 
 cli = CLI()
 cli.start()
