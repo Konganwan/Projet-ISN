@@ -26,13 +26,11 @@ class CLI(threading.Thread):
                 elif sc.lower() == "getid":
                     arg = int(input("User ID> "))
                     uinfo = users.getUserById(arg)
-                    print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')"
+                    print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
                 elif sc.lower() in ["rm","remove"]:
                     arg = int(input("User ID> "))
                     uinfo = users.removeUser(arg)
                     print(f'User n°{arg} removed')
                 else: print(f'Invalid subcommand: {sc}')
             else: print(f'Invalid command: {inp}')
-
-
         exit(0)
