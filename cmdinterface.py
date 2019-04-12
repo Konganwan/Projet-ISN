@@ -13,22 +13,19 @@ class CLI(threading.Thread):
             inp = inp.split(" ")
             if inp[0].lower() in ["exit","xxx","quit","q"]:
                 break
-            elif inp[0].lower() in ["users"]:
-                if len(inp) < 2:
-                    print('Command users needs subcommand')
-                    continue
-                if inp[1].lower == "add":
+            elif inp[0].lower() in ["users","u"]
+                if inp[1].lower in ["add","+"]:
                     args = inp[2:]
                     users.addUser(args[0],args[1],args[2])
-                elif inp[1].lower() == "getmail":
+                elif inp[1].lower() in ["getmail","gm"]:
                     arg = inp[2]
                     uinfo = users.getUserByMail(arg)
                     print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
-                elif inp[1].lower() == "getid":
+                elif inp[1].lower() in ["getid","gi"]:
                     arg = int(inp[2])
                     uinfo = users.getUserById(arg)
                     print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
-                elif inp[1].lower() in ["rm","remove"]:
+                elif inp[1].lower() in ["rm","remove","-"]:
                     try:
                         arg = int(inp[2])
                         uinfo = users.removeUser(arg)
