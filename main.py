@@ -14,5 +14,6 @@ conf ={
     },
     'log.screen': False,
 }
-CLI.start()
+cli = CLI()
+cli.start()
 cp.quickstart(Webapp(),"/",conf)
