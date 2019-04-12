@@ -23,7 +23,6 @@ class Webapp(object):
                     htmlContent = htmlContent + line
             return htmlContent.format(img_mv="",img_rec="")
         else:
-            print(cp.session["logged_as"])
             htmlContent = ""
             with open("pages/home/connected.html") as page:
                 for line in page:
