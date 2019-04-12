@@ -28,10 +28,14 @@ class CLI(threading.Thread):
                     uinfo = users.getUserById(arg)
                     print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
                 elif sc.lower() in ["rm","remove"]:
-                    arg = int(input("User ID> "))
-                    uinfo = users.removeUser(arg)
-                    print(f'User n°{arg} removed')
+                    try:
+                        arg = int(input("User ID> "))
+                        uinfo = users.removeUser(arg)
+                    except Exception as e:
+                        print(f'Error {e}')
+                    else:
+                        print(f'User n°{arg} removed')
                 else: print(f'Invalid subcommand: users.{sc}')
             else: print(f'Invalid command: {inp}')
-        self.engine.exit(0)
+        self.engine.exit()
         exit(0)
