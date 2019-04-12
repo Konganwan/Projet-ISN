@@ -11,9 +11,12 @@ conf ={
     '/static':{
         'tools.staticdir.on':True,
         'tools.staticdir.dir':'./static'
-    },
-    'log.screen': False,
+    }
 }
+cp.config.update({'log.screen': False,
+                        'log.access_file': '',
+                        'log.error_file': ''})
+
 cli = CLI()
 cli.start()
 cp.quickstart(Webapp(),"/",conf)
