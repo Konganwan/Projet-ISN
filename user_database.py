@@ -4,12 +4,7 @@ import codecs
 import os
 
 
-DB_PATH = None
-
-def constantSetup(sDataBasePath):
-    """Setups the constants for the module"""
-    global DB_PATH
-    DB_PATH = sDataBasePath
+DB_PATH = 'db.db'
 
 def tableSetup():
     """Setups the constants in the database"""

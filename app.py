@@ -11,15 +11,17 @@ class Webapp(object):
     def __init__(self):
 #        fi = open("config.json")
 #        config = json.load(fi)
-        users.constantSetup("db.db")
         users.tableSetup()
-        images.constantSetup("db.db")
         images.tableSetup()
 
     @cp.expose(alias="home")
     def index(self):
         if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
-            return open("pages/home/not-connected.html")
+            htmlContent = ""
+            with open("pages/home/not-connected.html") as page:
+                for line in page:
+                    htmlContent = htmlContent + line
+            return htmlContent.format(img_mv="",img_rec="")
         else:
             print(cp.session["logged_as"])
             htmlContent = ""
@@ -78,7 +80,7 @@ class Webapp(object):
     def signup_status(self,name,mail,pwd,cpwd):
         if cpwd == pwd and not users.chekUserExists(mail):
             users.addUser(name,pwd,mail)
-            cp.session['logged_as'] = getUserByMail(mail)[0]
+            cp.session['logged_as'] = users.getUserByMail(mail)[0]
             return open("pages/signup_s/success.html")
         else:
             return open("pages/signup_s/failure.html")

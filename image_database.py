@@ -2,11 +2,8 @@ import sqlite3 as sql
 import os
 
 
-DB_PATH = None
+DB_PATH = 'db.db'
 
-def constantSetup(sDataBasePath):
-    global DB_PATH
-    DB_PATH = sDataBasePath
 
 def tableSetup():
     try:
