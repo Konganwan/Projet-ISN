@@ -6,7 +6,7 @@ class CLI(threading.Thread):
     def __init__(self):
         super(CLI, self).__init__()
 
-    def run():
+    def run(self):
         while 1:
             inp = input("App console> ")
             if inp.lower() in ["exit","xxx","quit","q"]:
