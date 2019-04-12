@@ -3,8 +3,9 @@ import threading
 import user_database as users
 
 class CLI(threading.Thread):
-    def __init__(self):
+    def __init__(self, engine):
         super(CLI, self).__init__()
+        self.engine = engine
 
     def run(self):
         while 1:
@@ -32,4 +33,5 @@ class CLI(threading.Thread):
                     print(f'User n°{arg} removed')
                 else: print(f'Invalid subcommand: users.{sc}')
             else: print(f'Invalid command: {inp}')
+        self.engine.exit(0)
         exit(0)
