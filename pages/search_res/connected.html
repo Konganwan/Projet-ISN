@@ -2,7 +2,8 @@
 <html lang="fr">
 
 <head>
-	<title>Resultat</title>
+	<title>Search</title>
+
 	<link rel="stylesheet" href="/static/style.css">
 </head>
 
@@ -15,19 +16,14 @@
     <nav>
  	    <a href="/">Accueil</a>
 	    <a href="#">Link</a>
-	    <a href="/account">{name}</a>
-	    <a href="/disconect">Se d&eacute;connecter</a>
+	    <a href="#">Link</a>
+	    <a href="#">Link</a>
+	    <a href="/login">Se connecter</a>
 	</nav>
-	<column class="recent p3leftcol">
-    	<h2>Focus</h2>
-    	<img src="{main_content}" />
-    </column>
-
-    <column class="recent p3rightcol">
+	<column class="recent p2col">
     	<h2>R&eacute;sultats</h2>
-    	<img src="{img}" />
+    	{img_tags}
     </column>
 
-<body>
-
+</body>
 </html>
