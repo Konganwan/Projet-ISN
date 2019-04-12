@@ -14,7 +14,7 @@ class CLI(threading.Thread):
             if inp[0].lower() in ["exit","xxx","quit","q"]:
                 break
             elif inp[0].lower() in ["users","u"]:
-                if inp[1].lower in ["add","+"]:
+                if inp[1].lower() in ["add","+"]:
                     args = inp[2:]
                     users.addUser(args[0],args[1],args[2])
                 elif inp[1].lower() in ["getmail","gm"]:
