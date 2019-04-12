@@ -3,9 +3,8 @@ import threading
 import user_database as users
 
 class CLI(threading.Thread):
-    """Console interface for live db edit"""
     def __init__(self):
-        pass
+        super(CLI, self).__init__()
 
     def run():
         while 1:
