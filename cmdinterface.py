@@ -10,7 +10,7 @@ class CLI(threading.Thread):
     def run(self):
         while 1:
             inp = input("App console> ")
-            inp = inp.split(".")
+            inp = inp.split(" ")
             if inp[0].lower() in ["exit","xxx","quit","q"]:
                 break
             elif inp[0].lower() in ["users"]:
