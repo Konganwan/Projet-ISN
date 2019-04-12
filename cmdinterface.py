@@ -10,26 +10,26 @@ class CLI(threading.Thread):
     def run(self):
         while 1:
             inp = input("App console> ")
-            if inp.lower() in ["exit","xxx","quit","q"]:
+            inp = inp.split(".")
+            if inp[0].lower() in ["exit","xxx","quit","q"]:
                 break
-            elif inp.lower() in ["users"]:
-                sc = input("Users> ")
-                if sc.lower() == "add":
-                    args = []
-                    for arg in ("nom", "pwd", "mail"):
-                        args.append(input(f'{arg}> '))
+            elif inp[0].lower() in ["users"]:
+                if len(inp) == 0:
+                    inp.append(input("Users"))
+                if inp[1].lower == "add":
+                    args = inp[2:]
                     users.addUser(args[0],args[1],args[2])
-                elif sc.lower() == "getmail":
-                    arg = input("User Mail> ")
+                elif inp[1].lower() == "getmail":
+                    arg = inp[2]
                     uinfo = users.getUserByMail(arg)
                     print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
-                elif sc.lower() == "getid":
-                    arg = int(input("User ID> "))
+                elif inp[1].lower() == "getid":
+                    arg = int(inp[2])
                     uinfo = users.getUserById(arg)
                     print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
-                elif sc.lower() in ["rm","remove"]:
+                elif inp[1].lower() in ["rm","remove"]:
                     try:
-                        arg = int(input("User ID> "))
+                        arg = int(inp[2])
                         uinfo = users.removeUser(arg)
                     except Exception as e:
                         print(f'Error {e}')
