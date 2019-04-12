@@ -2,6 +2,7 @@
 import cherrypy as cp
 import os
 from app import Webapp
+from cmdinterface import CLI
 conf ={
     '/':{
         'tools.sessions.on':True,
@@ -13,4 +14,5 @@ conf ={
     },
     'log.screen': False,
 }
+CLI.start()
 cp.quickstart(Webapp(),"/",conf)
