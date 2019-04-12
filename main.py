@@ -10,6 +10,7 @@ conf ={
     '/static':{
         'tools.staticdir.on':True,
         'tools.staticdir.dir':'./static'
-    }
+    },
+    'log.screen': False,
 }
 cp.quickstart(Webapp(),"/",conf)
