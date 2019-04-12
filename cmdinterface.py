@@ -30,6 +30,6 @@ class CLI(threading.Thread):
                     arg = int(input("User ID> "))
                     uinfo = users.removeUser(arg)
                     print(f'User n°{arg} removed')
-                else: print(f'Invalid subcommand: {sc}')
+                else: print(f'Invalid subcommand: users.{sc}')
             else: print(f'Invalid command: {inp}')
         exit(0)
