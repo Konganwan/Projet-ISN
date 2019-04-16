@@ -83,5 +83,16 @@ class Webapp(object):
             return open("pages/signup_s/failure.html")
 
     @cp.expose
-    def search_results(self,query):
-        return open("search_results.html")
+    def search_results(self,query=""):
+        if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
+            htmlContent = ""
+            with open("pages/search_res/not-connected.html") as page:
+                for line in page:
+                    htmlContent = htmlContent + line
+            return htmlContent.format(res="Work In Proress")
+        else:
+            htmlContent = ""
+            with open("pages/search_res/connected.html") as page:
+                for line in page:
+                    htmlContent = htmlContent + line
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[1],res="Work In Proress")
