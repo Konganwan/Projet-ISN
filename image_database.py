@@ -1,6 +1,7 @@
 import sqlite3 as sql
 import os
 
+#images are stored in /static/u_images
 
 DB_PATH = 'db.db'
 

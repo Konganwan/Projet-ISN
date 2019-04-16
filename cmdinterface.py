@@ -1,6 +1,7 @@
 import threading
 
 import user_database as users
+import image_database as images
 
 class CLI(threading.Thread):
     def __init__(self, engine):
@@ -33,7 +34,18 @@ class CLI(threading.Thread):
                         print(f'Error {e}')
                     else:
                         print(f'User n°{arg} removed')
+
                 else: print(f'Invalid subcommand: users {inp[1]}')
-            else: print(f'Invalid command list: {inp[0]}')
+
+            elif inp[0].lower() in ["images","i"]:
+                if inp[1].lower() in ["gi","getId"]:
+                    data = images.getImageInfo(int(inp[2]))
+                    if type(data) is dict:
+                        for field in data.keys():
+                            print(field,":",data[field])
+                    else: print(f"No image with such ID : {inp[2]}")
+                
+
+            else: print(f"Invalid command: {inp[0]}")
         self.engine.exit()
         exit(0)
