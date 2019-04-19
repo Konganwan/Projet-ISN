@@ -97,7 +97,7 @@ def getImageByTitle(sTitle):
                 "Publisher": info[4],
                 "Path": info[5],
                 "Publication Time": info[6]
-            })
-            cur.close()
+             })
+        cur.close()
     if len(out) == 0:out.append({"Id" : None, "Title": None, "Description": None, "Tags": None, "Publisher": None, "Path": None, "Publication Time": None})
     return out
