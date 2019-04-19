@@ -19,13 +19,15 @@ class CLI(threading.Thread):
                     args = inp[2:]
                     users.addUser(args[0],args[1],args[2])
                 elif inp[1].lower() in ["getmail","gm"]:
-                    arg = inp[2]
-                    uinfo = users.getUserByMail(arg)
-                    print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
+                    ulist = users.getUserByMail(inp[2])
+                    for data in ulist:
+                        for field in data.keys():
+                            print(field,":",data[field])
                 elif inp[1].lower() in ["getid","gi"]:
-                    arg = int(inp[2])
-                    uinfo = users.getUserById(arg)
-                    print(f'Id: {uinfo[0]}\nNom: {uinfo[1]}\nPwd_hash: {uinfo[2]}\nMail: {uinfo[3]}')
+                    ulist = users.getUserById(int(inp[2]))
+                    for data in ulist:
+                        for field in data.keys():
+                            print(field,":",data[field])
                 elif inp[1].lower() in ["rm","remove","-"]:
                     try:
                         arg = int(inp[2])
@@ -34,17 +36,22 @@ class CLI(threading.Thread):
                         print(f'Error {e}')
                     else:
                         print(f'User n°{arg} removed')
-
+                elif inp[1].lower() in ["gn","getname"]:
+                    ulist = users.getUserByName(inp[2])
+                    for data in ulist:
+                        for field in data.keys():
+                            print(field,":",data[field])
                 else: print(f'Invalid subcommand: users {inp[1]}')
 
             elif inp[0].lower() in ["images","i"]:
-                if inp[1].lower() in ["gi","getId"]:
-                    data = images.getImageInfo(int(inp[2]))
-                    if type(data) is dict:
-                        for field in data.keys():
-                            print(field,":",data[field])
-                    else: print(f"No image with such ID : {inp[2]}")
-                
+                if inp[1].lower() in ["gi","getid"]:
+                    ilist = images.getImageById(int(inp[2]))
+                    for data in ilist:
+                        if type(data) is dict:
+                            for field in data.keys():
+                                print(field,":",data[field])
+                elif inp[1].lower() in ["gt","gettitle"]:
+                    ilist = images.getImageByTitle(inp[3])
 
             else: print(f"Invalid command: {inp[0]}")
         self.engine.exit()

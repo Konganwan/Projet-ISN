@@ -56,23 +56,52 @@ def chekUserExists(sMail):
     return nId is not None
 
 def getUserByMail(sMail):
-    """Gets all available info about the user corresponding to the given mail"""
-    info = [None]*4
+    """Gets all available info about the users corresponding to the given mail"""
+    out = []
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
         cur.execute("SELECT * FROM users WHERE  mail=?",(sMail,))
         for i in cur:
-            info = i
+            out.append({
+                "Id": i[0],
+                "Name": i[1],
+                "Password Hash": i[2],
+                "E-mail address": i[3]
+            })
         cur.close()
-    return info
+    if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})
+    return out
 
 def getUserById(nId):
     """Gets all available info about the user corresponding to the given id"""
-    info = [None]*4
+    out = []
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
         cur.execute("SELECT * FROM users WHERE  id=?",(nId,))
         for i in cur:
-            info = i
+            out.append({
+                "Id": i[0],
+                "Name": i[1],
+                "Password Hash": i[2],
+                "E-mail address": i[3]
+            })
         cur.close()
-    return info
+    if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})
+    return out
+
+def getUserByName(sName):
+    """Gets all available info about all users whith a given name"""
+    out = []
+    with sql.connect(DB_PATH) as db:
+        cur = db.cursor()
+        cur.execute("SELECT * FROM users WHERE  name=?",(sName,))
+        for i in cur:
+            out.append({
+                "Id": i[0],
+                "Name": i[1],
+                "Password Hash": i[2],
+                "E-mail address": i[3]
+            })
+        cur.close()
+    if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})
+    return out

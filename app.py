@@ -96,3 +96,6 @@ class Webapp(object):
                 for line in page:
                     htmlContent = htmlContent + line
             return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[1],res="Work In Proress")
+    @cp.expose
+    def publish(self):
+      return open("publish.html")
