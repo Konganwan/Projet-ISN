@@ -51,8 +51,11 @@ class CLI(threading.Thread):
                             for field in data.keys():
                                 print(field,":",data[field])
                 elif inp[1].lower() in ["gt","gettitle"]:
-                    ilist = images.getImageByTitle(inp[3])
-
+                    ilist = images.getImageByTitle(inp[2])
+                    for data in ilist:
+                        if type(data) is dict:
+                            for field in data.keys():
+                                print(field,":",data[field])
             else: print(f"Invalid command: {inp[0]}")
         self.engine.exit()
         exit(0)
