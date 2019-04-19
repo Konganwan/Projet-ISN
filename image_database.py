@@ -64,13 +64,13 @@ def getImageById(nId):
         for info in cur:
              out.append({
                 "Id" : info[0],
-                "Title": info[1],
+                "Title": infog[1],
                 "Description": info[2],
                 "Tags": info[3],
                 "Publisher": info[4],
                 "Path": info[5],
                 "Publication Time": info[6]
-            }
+            })
         cur.close()
 
     if len(out) == 0:out.append({"Id" : None, "Title": None, "Description": None, "Tags": None, "Publisher": None, "Path": None, "Publication Time": None})
