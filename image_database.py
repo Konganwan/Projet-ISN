@@ -60,7 +60,7 @@ def getImageById(nId):
     out = []
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT id, title, description, tags, publisher, file_path, publish_time FROM images WHERE id=?",(nId
+        cur.execute("SELECT id, title, description, tags, publisher, file_path, publish_time FROM images WHERE id=?",(nId,))
         for info in cur:
              out.append({
                 "Id" : info[0],
