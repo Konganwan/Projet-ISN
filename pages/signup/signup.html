@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
+  <meta charset="utf-8">
 	<title>Cr&eacute;ation d'un compte</title>
 	<link rel="stylesheet" href="/static/style.css">
 </head>
@@ -31,8 +32,8 @@
   		<a href="#">Link</a>
   		<a href="#">Link</a>
 	</nav>
-
-	<div class="login_box">
+	<p class="fail_message">{fail}</p>
+	<div class="account_box">
 		<form method="POST" action="signup_status">
 			Nom d'utilisateur :<br />
 			<input type="text" name="name"><br />

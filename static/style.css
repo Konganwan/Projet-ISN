@@ -72,3 +72,9 @@ p {
 .p3rightcol {
   float: right;
   width: 25%;
+}
+.account_box {
+  float: center;
+  margin: auto;
+  padding: auto;
+}

@@ -3,7 +3,6 @@ import hashlib as hasher
 import codecs
 import os
 
-
 DB_PATH = 'db.db'
 
 def tableSetup():
@@ -26,11 +25,13 @@ def addUser(sName, sPwd, sMail):
         db.execute("INSERT INTO users(name,pwd_hash,mail) VALUES (?,?,?)",(sName,sHashed,sMail))
         db.commit()
 
+
 def removeUser(nUserID):
     """Delete an users from the database"""
     with sql.connect(DB_PATH) as db:
         db.execute("DELETE FROM users WHERE id=?",(nUserID,))
         db.commit()
+
 
 def checkUserPassword(sGivenPwd, sMail):
     """Checks if a given password matches with the one of a given user"""
@@ -44,7 +45,8 @@ def checkUserPassword(sGivenPwd, sMail):
         cur.close()
     return sStoredHash == sGPwdHash
 
-def chekUserExists(sMail):
+
+def checkUserExists(sMail):
     """Checks if a given e-mail adress is the one of a registered user"""
     nId = None
     with sql.connect(DB_PATH) as db:
@@ -54,6 +56,7 @@ def chekUserExists(sMail):
             nId = info[0]
         cur.close()
     return nId is not None
+
 
 def getUserByMail(sMail):
     """Gets all available info about the users corresponding to the given mail"""
@@ -72,6 +75,7 @@ def getUserByMail(sMail):
     if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})
     return out
 
+
 def getUserById(nId):
     """Gets all available info about the user corresponding to the given id"""
     out = []
@@ -88,6 +92,7 @@ def getUserById(nId):
         cur.close()
     if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})
     return out
+
 
 def getUserByName(sName):
     """Gets all available info about all users whith a given name"""
