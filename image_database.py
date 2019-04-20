@@ -25,6 +25,7 @@ def getImagePath(nId):
         cur = db.cursor()
         cur.execute("SELECT file_path FROM images WHERE id=?",(nId,))
         for info in cur: return info[0]
+    return "None"
 
 def getImageTitle(nId):
     with sql.connect(DB_PATH) as db:
