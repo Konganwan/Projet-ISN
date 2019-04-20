@@ -63,10 +63,10 @@ def getUserByMail(sMail):
         cur.execute("SELECT * FROM users WHERE  mail=?",(sMail,))
         for i in cur:
             out.append({
-                "Id": i[0],
-                "Name": i[1],
-                "Password Hash": i[2],
-                "E-mail address": i[3]
+                "id": i[0],
+                "name": i[1],
+                "pwd_hash": i[2],
+                "mail": i[3]
             })
         cur.close()
     if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})
@@ -80,10 +80,10 @@ def getUserById(nId):
         cur.execute("SELECT * FROM users WHERE  id=?",(nId,))
         for i in cur:
             out.append({
-                "Id": i[0],
-                "Name": i[1],
-                "Password Hash": i[2],
-                "E-mail address": i[3]
+                "id": i[0],
+                "name": i[1],
+                "pwd_hash": i[2],
+                "mail": i[3]
             })
         cur.close()
     if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})
@@ -97,10 +97,10 @@ def getUserByName(sName):
         cur.execute("SELECT * FROM users WHERE  name=?",(sName,))
         for i in cur:
             out.append({
-                "Id": i[0],
-                "Name": i[1],
-                "Password Hash": i[2],
-                "E-mail address": i[3]
+                "id": i[0],
+                "name": i[1],
+                "pwd_hash": i[2],
+                "mail": i[3]
             })
         cur.close()
     if len(out) == 0: out.append({"Id": None, "Name": None, "Password Hash": None, "E-mail address": None})

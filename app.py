@@ -25,7 +25,7 @@ class Webapp(object):
             with open("pages/home/connected.html") as page:
                 for line in page:
                     htmlContent = htmlContent + line
-            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[1],img_rec="", img_mv="")
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"],img_rec="", img_mv="")
 
     @cp.expose(alias="view")
     def show_image(self, iid=0):
@@ -42,9 +42,9 @@ class Webapp(object):
         try: ipath = getImagePath(int(iid))
         except: ipath = ""
         if con:
-            return htmlContent.format(name=getUserById(cp.session['logged_as'])[1], img=ipath)
+            return htmlContent.format(name=getUserById(cp.session['logged_as'])[0]["name"], main_content=ipath)
         else:
-            return htmlContent.format(img=ipath)
+            return htmlContent.format(main_content=ipath)
 
     @cp.expose
     def login(self,fail=""):
@@ -68,7 +68,7 @@ class Webapp(object):
     @cp.expose
     def login_status(self,mail,pwd):
         if users.chekUserExists(mail) and users.checkUserPassword(pwd, mail):
-            cp.session['logged_as'] = users.getUserByMail(mail)[0]
+            cp.session['logged_as'] = users.getUserByMail(mail)[0]["id"]
             return  self.index()
         else:
             return self.login(fail="Erreur - Adresse et/ou mot de passe incorrect")
@@ -77,7 +77,7 @@ class Webapp(object):
     def signup_status(self,name,mail,pwd,cpwd):
         if cpwd == pwd and not users.chekUserExists(mail):
             users.addUser(name,pwd,mail)
-            cp.session['logged_as'] = users.getUserByMail(mail)[0]
+            cp.session['logged_as'] = users.getUserByMail(mail)[0]["id"]
             return open("pages/signup_s/success.html")
         else:
             return open("pages/signup_s/failure.html")
@@ -95,7 +95,7 @@ class Webapp(object):
             with open("pages/search_res/connected.html") as page:
                 for line in page:
                     htmlContent = htmlContent + line
-            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[1],res="Work In Proress")
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0][1],res="Work In Proress")
     @cp.expose
     def publish(self):
       return open("publish.html")
