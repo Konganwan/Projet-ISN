@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr" dir="">
+  <head>
+    <meta charset="utf-8">
+    <title>{Nom_site} - Publier</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <a href="/">
+      <header>
+        <h1>{Nom_site} - Publier</h1>
+      </header>
+    </a>
+    <nav>
+  	    <a href="/">Accueil</a>
+  	    <a href="/publish">Publier</a>
+  	    <a href="/account">{name}</a>
+  	    <a href="/disconect">Se d&eacute;connecter</a>
+  	</nav>
+    <form action="publish_status" method="post" enctype="multipart/form-data">
+      Your Image: <input type="file" name="myFile" accept="image/*"/><br />
+            <input type="submit" />
+    </form>
+  </body>
+</html>

@@ -108,7 +108,7 @@ class Webapp(object):
             return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0][1],res="Work In Proress")
     @cp.expose
     def publish(self):
-        if 'logged_as' not in cp.session or cp.session['logged_as'gp] == None:
+        if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
             return self.login(fail="Pour pouvoir publier, vous devez être connecté")
         else:
             htmlContent = ""
