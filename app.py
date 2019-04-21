@@ -1,6 +1,6 @@
 import cherrypy as cp
 
-
+import time
 import json
 import user_database as users
 import image_database as images
@@ -39,7 +39,7 @@ class Webapp(object):
         with open(path) as page:
             for line in page:
                 htmlContent = htmlContent + line
-        try: ipath = getImagePath(int(iid))
+        try: ipath = images.getImagePath(int(iid))
         except: ipath = ""
         if con:
             return htmlContent.format(name=getUserById(cp.session['logged_as'])[0]["name"], main_content=ipath)
@@ -115,4 +115,26 @@ class Webapp(object):
             with open("pages/publish/connected.html") as page:
                 for line in page:
                     htmlContent = htmlContent + line
-            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0][1],res="Work In Proress")
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"],Nom_site="Site")
+
+    @cp.expose
+    def publish_status(self, image,title,desc,tags):
+        if desc == "": desc = "Aucune description fournie"
+        nTime = time.time()
+        sPath=f"static/u_images/{str(cp.session['logged_as'])}_{str(nTime)}.{image.filename.split(".")[-1]}"
+        with open(sPath,"wb") as out:
+            while True:
+            data = image.file.read(8192)
+            if not data:
+                break
+            out.write(data)
+        taglist = tags.split(",")
+        for i in taglist:
+            i=i.strip()
+        sTags = ""
+        for i in taglist:
+            if not i == "":
+                sTags = sTags + "[" + i + "]"
+
+        nId = images.addImage(sPath, title, cp.session['logged_as'], desc, sTags, nTime)
+      return """nId"""

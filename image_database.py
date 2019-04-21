@@ -77,12 +77,19 @@ def getImageById(nId):
     if len(out) == 0:out.append({"Id" : None, "Title": None, "Description": None, "Tags": None, "Publisher": None, "Path": None, "Publication Time": None})
     return out
 
-def addImage(sPath, sTitle, nOwner, sDescription, sTags):
-    nTime = int(time.time())
+def addImage(sPath, sTitle, nOwner, sDescription, sTags, nTime):
+    nId = None
     with sql.connect(DB_PATH) as db:
-        db.execute("INSERT INTO images(title, description, tags, publisher, file_path, publish_time) VALUES (?,?,?,?,?,?)",
+        cur = db.cursor()
+        cur.execute("INSERT INTO images(title, description, tags, publisher, file_path, publish_time) VALUES (?,?,?,?,?,?)",
             (sTitle, sDescription, sTags, nOwner, sPath, nTime))
-        db.commit()
+        cur.commit()
+        cur.execute("SELECT id FROM images WHERE (file_path=?)",(sPath))
+        for info in cur:
+            nId = info[0]
+        cur.close()
+    return nId
+
 
 def getImageByTitle(sTitle):
     out = []

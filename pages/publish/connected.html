@@ -12,14 +12,18 @@
       </header>
     </a>
     <nav>
-  	    <a href="/">Accueil</a>
-  	    <a href="/publish">Publier</a>
-  	    <a href="/account">{name}</a>
-  	    <a href="/disconect">Se d&eacute;connecter</a>
+	    <a href="/">Accueil</a>
+      <a href="/publish">Publier</a>
+      <a href="/account">{name}</a>
+	    <a href="/disconect">Se d&eacute;connecter</a>
   	</nav>
     <form action="publish_status" method="post" enctype="multipart/form-data">
-      Your Image: <input type="file" name="myFile" accept="image/*"/><br />
-            <input type="submit" />
+      Image*: <input type="file" name="image" accept="image/*" required/><br />
+      Titre*: <input type="text" name="title" maxlength="64" required><br />
+      Description: <textarea name="desc" rows="8" cols="80" maxlength="256"></textarea><br />
+      Tags (séparés par des virgules): <input type="text" name="tags" required><br />
+      <input type="submit" />
+      Les champs avec des * doivent être remplis
     </form>
-  </body>
+    </body>
 </html>
