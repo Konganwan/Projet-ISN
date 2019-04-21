@@ -121,12 +121,12 @@ class Webapp(object):
     def publish_status(self, image,title,desc,tags):
         if desc == "": desc = "Aucune description fournie"
         nTime = time.time()
-        sPath=f"static/u_images/{str(cp.session['logged_as'])}_{str(nTime)}.{image.filename.split(".")[-1]}"
+        sPath="static/u_images/{uid}_{t}.{ext}".format(uid=str(cp.session['logged_as']), t=str(nTime), ext=image.filename.split(".")[-1])
         with open(sPath,"wb") as out:
             while True:
-            data = image.file.read(8192)
-            if not data:
-                break
+                data = image.file.read(8192)
+                if not data:
+                    break
             out.write(data)
         taglist = tags.split(",")
         for i in taglist:
@@ -137,4 +137,4 @@ class Webapp(object):
                 sTags = sTags + "[" + i + "]"
 
         nId = images.addImage(sPath, title, cp.session['logged_as'], desc, sTags, nTime)
-      return """nId"""
+        return """nId"""
