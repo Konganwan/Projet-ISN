@@ -83,8 +83,8 @@ def addImage(sPath, sTitle, nOwner, sDescription, sTags, nTime):
         cur = db.cursor()
         cur.execute("INSERT INTO images(title, description, tags, publisher, file_path, publish_time) VALUES (?,?,?,?,?,?)",
             (sTitle, sDescription, sTags, nOwner, sPath, nTime))
-        cur.commit()
-        cur.execute("SELECT id FROM images WHERE (file_path=?)",(sPath))
+        db.commit()
+        cur.execute("SELECT id FROM images WHERE file_path=?",(sPath,))
         for info in cur:
             nId = info[0]
         cur.close()

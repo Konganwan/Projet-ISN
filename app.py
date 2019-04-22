@@ -121,7 +121,7 @@ class Webapp(object):
     def publish_status(self, image,title,desc,tags):
         if desc == "": desc = "Aucune description fournie"
         nTime = time.time()
-        sPath="static/u_images/{uid}_{t}.{ext}".format(uid=str(cp.session['logged_as']), t=str(nTime), ext=image.filename.split(".")[-1])
+        sPath="static/u_images/{uid}_{t}_u.{ext}".format(uid=str(cp.session['logged_as']), t=str(nTime), ext=image.filename.split(".")[-1])
         with open(sPath,"wb") as out:
             while True:
                 data = image.file.read(8192)
@@ -129,12 +129,10 @@ class Webapp(object):
                     break
             out.write(data)
         taglist = tags.split(",")
-        for i in taglist:
-            i=i.strip()
         sTags = ""
         for i in taglist:
             if not i == "":
-                sTags = sTags + "[" + i + "]"
+                sTags = sTags + "[" + i.strip() + "]"
 
         nId = images.addImage(sPath, title, cp.session['logged_as'], desc, sTags, nTime)
         return """nId"""

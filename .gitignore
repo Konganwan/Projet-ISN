@@ -106,3 +106,4 @@ venv.bak/
 # app-specific
 *.db
 main
+*_u.*
