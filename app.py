@@ -93,7 +93,24 @@ class Webapp(object):
             return self.signup(fail=error_message)
 
     @cp.expose
-    def search_results(self,query=""):
+    def search_results(self,q=""):
+        tags = []
+        tagging=False
+        current=""
+        kwds=[]
+        for i in q:
+            if i == '[' and not tagging:
+                if len(current)>0:
+                    kwds.append(current)
+                tagging=True
+            elif i == ']' and tagging:
+                tags.append(current)
+                current=""
+                tagging = False
+            else:
+                current=current+i
+        if len(current)>0:
+        kwds.append(current)
         if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
             htmlContent = ""
             with open("pages/search_res/not-connected.html") as page:
@@ -136,3 +153,4 @@ class Webapp(object):
 
         nId = images.addImage(sPath, title, cp.session['logged_as'], desc, sTags, nTime)
         return """nId"""
+    
