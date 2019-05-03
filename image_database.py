@@ -65,7 +65,7 @@ def getImageById(nId):
         for info in cur:
              out.append({
                 "Id" : info[0],
-                "Title": infog[1],
+                "Title": info[1],
                 "Description": info[2],
                 "Tags": info[3],
                 "Publisher": info[4],

@@ -42,9 +42,9 @@ class Webapp(object):
         try: ipath = images.getImagePath(int(iid))
         except: ipath = ""
         if con:
-            return htmlContent.format(name=getUserById(cp.session['logged_as'])[0]["name"], main_content=ipath)
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"], main_content=ipath, suggestions="")
         else:
-            return htmlContent.format(main_content=ipath)
+            return htmlContent.format(main_content=ipath, suggestions="")
 
     @cp.expose
     def login(self,fail=""):
@@ -110,7 +110,7 @@ class Webapp(object):
             else:
                 current=current+i
         if len(current)>0:
-        kwds.append(current)
+            kwds.append(current)
         if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
             htmlContent = ""
             with open("pages/search_res/not-connected.html") as page:
@@ -140,10 +140,7 @@ class Webapp(object):
         nTime = time.time()
         sPath="static/u_images/{uid}_{t}_u.{ext}".format(uid=str(cp.session['logged_as']), t=str(nTime), ext=image.filename.split(".")[-1])
         with open(sPath,"wb") as out:
-            while True:
-                data = image.file.read(8192)
-                if not data:
-                    break
+            data = image.file.read()
             out.write(data)
         taglist = tags.split(",")
         sTags = ""
@@ -152,5 +149,5 @@ class Webapp(object):
                 sTags = sTags + "[" + i.strip() + "]"
 
         nId = images.addImage(sPath, title, cp.session['logged_as'], desc, sTags, nTime)
-        return """nId"""
-    
+        return f"""{nId}"""
+
