@@ -135,6 +135,21 @@ class Webapp(object):
             return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"],Nom_site="Site")
 
     @cp.expose
+    def search(self):
+        if 'logged_as' not in cp.session or cp.session['logged_as'] == None:
+            htmlContent = ""
+            with open("pages/search/not-connected.html") as page:
+                for line in page:
+                    htmlContent = htmlContent + line
+            return htmlContent
+        else:
+            htmlContent = ""
+            with open("pages/search/connected.html") as page:
+                for line in page:
+                    htmlContent = htmlContent + line
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"])
+
+    @cp.expose
     def publish_status(self, image,title,desc,tags):
         if desc == "": desc = "Aucune description fournie"
         nTime = time.time()

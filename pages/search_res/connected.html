@@ -14,27 +14,27 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 <head>
-	<title>Search</title>
+    <title>Search</title>
   <meta charset="utf-8">
-	<link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-	<header>
-		<a href="/"><img class='logo' src='/static/logo.png'/></a>
-		<h1>Header</h1>
-	</header>
+    <header>
+        <a href="/"><img class='logo' src='/static/logo.png'/></a>
+        <h1>Header</h1>
+    </header>
 
     <nav>
- 	    <a href="/">Accueil</a>
-	    <a href="/publish">Publier</a>
-	    <a href="/account">{name}</a>
-	    <a href="/login">Se d&eacute;connecter</a>
-	</nav>
-	<column class="recent p2col">
-    	<h2>R&eacute;sultats</h2>
-    	{res}
-    </column>
+         <a href="/">Accueil</a>
+        <a href="/publish">Publier</a>
+        <a href="/account">{name}</a>
+        <a href="/login">Se d&eacute;connecter</a>
+    </nav>
+    <div class="results">
+        <h2>R&eacute;sultats</h2>
+        {res}
+    </div>
 
 </body>
 </html>

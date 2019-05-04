@@ -95,17 +95,20 @@ def getImageByTitle(sTitle):
     out = []
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT id, title, description, tags, publisher, file_path, publish_time FROM images WHERE title=?",(sTitle,))
+        cur.execute("SELECT id, title, description, tags, publisher, file_path, publish_time FROM images")
         for info in cur:
-             out.append({
-                "Id" : info[0],
-                "Title": info[1],
-                "Description": info[2],
-                "Tags": info[3],
-                "Publisher": info[4],
-                "Path": info[5],
-                "Publication Time": info[6]
-             })
+            if sTitle in info[1]:
+                out.append({
+                    "Id" : info[0],
+                    "Title": info[1],
+                    "Description": info[2],
+                    "Tags": info[3],
+                    "Publisher": info[4],
+                    "Path": info[5],
+                    "Publication Time": info[6]
+                })
         cur.close()
     if len(out) == 0:out.append({"Id" : None, "Title": None, "Description": None, "Tags": None, "Publisher": None, "Path": None, "Publication Time": None})
     return out
+
+
