@@ -2,32 +2,31 @@
 <html lang="fr">
 
 <head>
-	<title>Resultat</title>
+    <title>Resultat</title>
   <meta charset="utf-8">
-	<link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-	<header>
-		<a href="/"><img class='logo' src='/static/logo.png'/></a>
-		<h1>Header</h1>
-	</header>
+    <header>
+        <a href="/"><img class='logo' src='/static/logo.png'/></a>
+        <h1>Header</h1>
+    </header>
 
     <nav>
- 	    <a href="/">Accueil</a>
-	    <a href="/publish">Publier</a>
-	    <a href="/signup">S'inscrire</a>
-	    <a href="/login">Se connecter</a>
-	</nav>
-	<column class="recent p3leftcol">
-    	<h2>Focus</h2>
-    	<img src="{main_content}" />
-    </column>
-
-    <column class="recent p3rightcol">
-    	<h2>R&eacute;sultats</h2>
-    	{suggestions}
-    </column>
+        <a href="/">Accueil</a>
+        <a href="/publish">Publier</a>
+        <a href="/signup">S'inscrire</a>
+        <a href="/login">Se connecter</a>
+    </nav>
+    <div class="recent show_mainMatter">
+        <h2>Focus</h2>
+        <img class="main_image" src="{main_content}" />
+        <h3 class="image_title">{ititle}</h3>
+        <p class="image_own">by {own}</p>
+        <h4>Description</h4>
+        {desc}
+    </div>
 
 <body>
 

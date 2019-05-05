@@ -39,12 +39,24 @@ class Webapp(object):
         with open(path) as page:
             for line in page:
                 htmlContent = htmlContent + line
-        try: ipath = images.getImagePath(int(iid))
+        try: ipath = images.getImagePath(images.toId(iid))
         except: ipath = ""
+        try: title = images.getImageTitle(images.toId(iid))
+        except: title = ""
+        try:
+            ddesc = images.getImageDesc(images.toId(iid))
+            dlist = ddesc.split("\n")
+            desc = ""
+            for i in dlist:
+                desc = desc + "<p>" + i + "</p>"
+        except:
+            desc = ""
+        try: own = users.getUserById(images.getImageOwner(images.toId(iid)))[0]["name"]
+        except: own = ""
         if con:
-            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"], main_content=ipath, suggestions="")
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"], main_content=ipath, ititle=title, desc=desc, own=own)
         else:
-            return htmlContent.format(main_content=ipath, suggestions="")
+            return htmlContent.format(main_content=ipath, ititle=title, desc=desc, own=own)
 
     @cp.expose
     def login(self,fail=""):
@@ -102,6 +114,7 @@ class Webapp(object):
             if i == '[' and not tagging:
                 if len(current)>0:
                     kwds.append(current)
+                    current = ""
                 tagging=True
             elif i == ']' and tagging:
                 tags.append(current)
@@ -116,13 +129,14 @@ class Webapp(object):
             with open("pages/search_res/not-connected.html") as page:
                 for line in page:
                     htmlContent = htmlContent + line
-            return htmlContent.format(res="Work In Proress")
+            return htmlContent.format(res="<p>Tags:" + str(tags) + "</p><p>Kwds:" + str(kwds) + "</p>")
         else:
             htmlContent = ""
             with open("pages/search_res/connected.html") as page:
                 for line in page:
                     htmlContent = htmlContent + line
-            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0][1],res="Work In Proress")
+            return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0][1],res="<p>Tags:" + str(tags) + "</p><p>Kwds:" + str(kwds) + "</p>")
+
     @cp.expose
     def publish(self):
         if 'logged_as' not in cp.session or cp.session['logged_as'] == None:

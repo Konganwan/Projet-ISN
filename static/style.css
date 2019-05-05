@@ -8,6 +8,9 @@ body {
 .bannerlink{
   text-decoration: none;
 }
+.main_image{
+    max-width: 75%;
+}
 .fail_message{
   text-align: center;
   font-size: 1.2em;
@@ -63,16 +66,11 @@ p {
     text-align: center;
 }
 
-.p3leftcol {
-  float: left;
-  width: 75%;
+.show_mainMatter {
+  float: center;
+  width: 100%;
 }
 
-/* Right column */
-.p3rightcol {
-  float: right;
-  width: 25%;
-}
 .account_box {
   float: center;
   margin: auto;

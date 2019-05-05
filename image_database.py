@@ -5,6 +5,13 @@ import os
 
 DB_PATH = 'db.db'
 
+def toUrl(number):
+    code = hex(number)[2:]
+    code = "0"*(8-len(code)) + code
+    return code
+
+def toId(code):
+    return eval("0x"+code)
 
 def tableSetup():
     try:
