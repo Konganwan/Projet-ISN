@@ -39,10 +39,13 @@ class Webapp(object):
         with open(path) as page:
             for line in page:
                 htmlContent = htmlContent + line
+
         try: ipath = images.getImagePath(images.toId(iid))
         except: ipath = ""
+
         try: title = images.getImageTitle(images.toId(iid))
         except: title = ""
+
         try:
             ddesc = images.getImageDesc(images.toId(iid))
             dlist = ddesc.split("\n")
@@ -51,8 +54,10 @@ class Webapp(object):
                 desc = desc + "<p>" + i + "</p>"
         except:
             desc = ""
+
         try: own = users.getUserById(images.getImageOwner(images.toId(iid)))[0]["name"]
         except: own = ""
+
         if con:
             return htmlContent.format(name=users.getUserById(cp.session['logged_as'])[0]["name"], main_content=ipath, ititle=title, desc=desc, own=own)
         else:
