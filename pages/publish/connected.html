@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr" dir="">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>{Nom_site} - Publier</title>
     <link rel="stylesheet" href="/static/style.css">
-  </head>
-  <body>
+</head>
+<body>
     <a href="/">
-      <header>
-        <h1>{Nom_site} - Publier</h1>
-      </header>
+        <header>
+            <h1>{Nom_site} - Publier</h1>
+        </header>
     </a>
     <nav>
-	    <a href="/">Accueil</a>
-      <a href="/publish">Publier</a>
-      <a href="/account">{name}</a>
-	    <a href="/disconect">Se d&eacute;connecter</a>
-  	</nav>
+        <a href="/">Accueil</a>
+        <a href="/search">Recherche</a>
+        <a href="/publish">Publier</a>
+        <a href="/account">{name}</a>
+        <a href="/disconect">Se d&eacute;connecter</a>
+    </nav>
     <form action="publish_status" method="post" enctype="multipart/form-data">
-      Image*: <input type="file" name="image" accept="image/*" required/><br />
-      Titre*: <input type="text" name="title" maxlength="64" required><br />
-      Description: <textarea name="desc" rows="8" cols="80" maxlength="256"></textarea><br />
-      Tags (séparés par des virgules): <input type="text" name="tags" required><br />
-      <input type="submit" />
-      Les champs avec des * doivent être remplis
+        Image*: <input type="file" name="image" accept="image/*" required/><br />
+        Titre*: <input type="text" name="title" maxlength="64" required><br />
+        Description: <textarea name="desc" rows="8" cols="80" maxlength="256"></textarea><br />
+        Tags (s&eacute;par&eacute;s par des virgules): <input type="text" name="tags" ><br />
+        <input type="submit" />
+        Les champs avec des * doivent &ecirc;tre remplis
     </form>
-    </body>
+</body>
 </html>

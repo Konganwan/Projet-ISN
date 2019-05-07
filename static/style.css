@@ -5,6 +5,7 @@ body {
     color: #F8F8F2;
     padding: 10px;
 }
+/*Titre ou icône des pages*/
 header {
     padding: 10px;
     background-color: #494a44;
@@ -13,7 +14,7 @@ header {
     text-decoration: none;
     text-align:center;
 }
-
+/*Barre de navigation*/
 nav {
     overflow: hidden;
     background-color: #E69F66;
@@ -22,7 +23,7 @@ nav {
     display: flex;
     justify-content:space-evenly;
 }
-
+/*Liens de la barre de navigation*/
 nav a {
     color: #f2f2f2;
     text-align: center;
@@ -32,7 +33,7 @@ nav a {
     padding-right: 20px;
     text-decoration: none;
 }
-
+/*Souris sur le lien de navigation*/
 nav a:hover {
     background-color: white;
     color: #E69F66;
@@ -57,26 +58,26 @@ p {
 }
 
 .show_mainMatter {
-  float: center;
-  width: 100%;
+    float: center;
+    width: 100%;
 }
 
 .account_box {
-  float: center;
-  margin: auto;
-  padding: auto;
+    float: center;
+    margin: auto;
+    padding: auto;
 }
 
 .bannerlink{
-  text-decoration: none;
+    text-decoration: none;
 }
-
+/*Page d'image*/
 .main_image{
     max-width: 75%;
 }
-
+/*Message d'erreur*/
 .fail_message{
-  text-align: center;
-  font-size: 1.2em;
-  color: red;
+    text-align: center;
+    font-size: 1.2em;
+    color: red;
 }
