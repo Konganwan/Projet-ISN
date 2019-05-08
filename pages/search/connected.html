@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--Titre de l'onglet-->
     <title>Rechercher</title>
-  <meta charset="utf-8">
+    <!--Utilisation de caractères spéciaux-->
+    <meta charset="utf-8">
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
-<a href="/" class="bannerlink">
-    <header>
-        <h1>Rechercher</h1>
-    </header>
+    <a href="/" class="bannerlink">
+        <header>
+            <!--Titre de la page-->
+            <h1>Rechercher</h1>
+        </header>
 </a>
     <nav>
+        <!--Liens vers d'autre page-->
         <a href="/">Accueil</a>
         <a href="/search">Rechercher</a>
         <a href="/publish">Publier</a>
         <a href="/account">{name}</a>
-        <a href="/login">Se connecter</a>
+        <a href="/disconect">Se d&eacute;connecter</a>
     </nav>
     <form action="/search_results">
         <input type="text" name="q" placeholder="Entrez votre recherche ici..." />
