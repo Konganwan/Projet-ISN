@@ -18,11 +18,11 @@ def tableSetup():
         with sql.connect(DB_PATH) as db:
             db.execute("""CREATE TABLE images (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL,
                                               title TEXT,
-                                              description TEXT,
+                                              desc TEXT,
                                               tags TEXT,
-                                              publisher INTEGER,
-                                              file_path TEXT,
-                                              publish_time INT)""")
+                                              pub INTEGER,
+                                              path TEXT,
+                                              ptime INTEGER)""")
             db.commit()
     except:
         pass
@@ -30,7 +30,7 @@ def tableSetup():
 def getImagePath(nId):
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT file_path FROM images WHERE id=?",(nId,))
+        cur.execute("SELECT path FROM images WHERE id=?",(nId,))
         for info in cur: return info[0]
     return "None"
 
@@ -49,49 +49,49 @@ def getImageTags(nId):
 def getImageOwner(nId):
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT publisher FROM images WHERE id=?",(nId,))
+        cur.execute("SELECT pub FROM images WHERE id=?",(nId,))
         for info in cur: return info[0]
 
 def getImageDesc(nId):
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT description FROM images WHERE id=?",(nId,))
+        cur.execute("SELECT desc FROM images WHERE id=?",(nId,))
         for info in cur: return info[0]
 
 def getImageTime(nId):
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT publish_time FROM images WHERE id=?",(nId,))
+        cur.execute("SELECT ptime FROM images WHERE id=?",(nId,))
         for info in cur: return info[0]
 
 def getImageById(nId):
     out = []
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT id, title, description, tags, publisher, file_path, publish_time FROM images WHERE id=?",(nId,))
+        cur.execute("SELECT id, title, desc, tags, pub, path, ptime FROM images WHERE id=?",(nId,))
         for info in cur:
              out.append({
-                "Id" : info[0],
-                "Title": info[1],
-                "Description": info[2],
+                "id" : info[0],
+                "title": info[1],
+                "desc": info[2],
                 "Tags": info[3],
-                "Publisher": info[4],
-                "Path": info[5],
-                "Publication Time": info[6]
+                "pub": info[4],
+                "path": info[5],
+                "ptime": info[6]
             })
         cur.close()
 
-    if len(out) == 0:out.append({"Id" : None, "Title": None, "Description": None, "Tags": None, "Publisher": None, "Path": None, "Publication Time": None})
+    if len(out) == 0:out.append({"id" : None, "title": None, "desc": None, "Tags": None, "pub": None, "path": None, "ptime": None})
     return out
 
 def addImage(sPath, sTitle, nOwner, sDescription, sTags, nTime):
     nId = None
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("INSERT INTO images(title, description, tags, publisher, file_path, publish_time) VALUES (?,?,?,?,?,?)",
+        cur.execute("INSERT INTO images(title, desc, tags, pub, path, ptime) VALUES (?,?,?,?,?,?)",
             (sTitle, sDescription, sTags, nOwner, sPath, nTime))
         db.commit()
-        cur.execute("SELECT id FROM images WHERE file_path=?",(sPath,))
+        cur.execute("SELECT id FROM images WHERE path=?",(sPath,))
         for info in cur:
             nId = info[0]
         cur.close()
@@ -102,20 +102,20 @@ def getImageByTitle(sTitle):
     out = []
     with sql.connect(DB_PATH) as db:
         cur = db.cursor()
-        cur.execute("SELECT id, title, description, tags, publisher, file_path, publish_time FROM images")
+        cur.execute("SELECT id, title, desc, tags, pub, path, ptime FROM images")
         for info in cur:
             if sTitle in info[1]:
                 out.append({
-                    "Id" : info[0],
-                    "Title": info[1],
-                    "Description": info[2],
+                    "id" : info[0],
+                    "title": info[1],
+                    "desc": info[2],
                     "Tags": info[3],
-                    "Publisher": info[4],
-                    "Path": info[5],
-                    "Publication Time": info[6]
+                    "pub": info[4],
+                    "path": info[5],
+                    "ptime": info[6]
                 })
         cur.close()
-    if len(out) == 0:out.append({"Id" : None, "Title": None, "Description": None, "Tags": None, "Publisher": None, "Path": None, "Publication Time": None})
+    if len(out) == 0:out.append({"id" : None, "title": None, "desc": None, "Tags": None, "pub": None, "path": None, "ptime": None})
     return out
 
 
