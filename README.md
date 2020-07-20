@@ -1,5 +1,7 @@
 # Projet-ISN
 
+**\[Archived\] Old high school project**
+
 ## Installing libs
 
 You need to have Python 3 installed.
